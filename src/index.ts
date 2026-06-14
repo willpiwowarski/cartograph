@@ -1,22 +1,50 @@
-import { Project } from "ts-morph";
+import { Project, SyntaxKind, Node, CallExpression } from "ts-morph";
 
-// 1. A "Project" is ts-morph's in-memory model of a whole codebase.
 const project = new Project();
-
-// 2. Load the files we want to analyze into that model.
 project.addSourceFilesAtPaths("sample/**/*.ts");
 
-// 3. Walk every file and collect every callable (functions + class methods).
-for (const file of project.getSourceFiles()) {
-  // Top-level functions, e.g. `function add() {}`
-  for (const fn of file.getFunctions()) {
-    console.log(`function  ${fn.getName()}  (${file.getBaseName()}:${fn.getStartLineNumber()})`);
+function getEnclosingCallable(node: Node): Node | undefined {
+  return node.getFirstAncestor(
+    (a) => Node.isFunctionDeclaration(a) || Node.isMethodDeclaration(a)
+  );
+}
+
+function describe(node: Node): string {
+  if (Node.isMethodDeclaration(node)) {
+    const cls = node.getFirstAncestorByKind(SyntaxKind.ClassDeclaration);
+    return `${cls?.getName()}.${node.getName()}`;
+  }
+  if (Node.isFunctionDeclaration(node)) {
+    return node.getName() ?? "<anonymous>";
+  }
+  return node.getKindName();
+}
+
+// Resolve the callee of a call to the symbol it refers to.
+function resolveCalleeSymbol(call: CallExpression) {
+  const callee = call.getExpression();
+
+  // Method call: `receiver.method(...)` — callee is a property access.
+  if (Node.isPropertyAccessExpression(callee)) {
+    // We want the `.method` name. Which method it is depends on the
+    // receiver's type, which the checker has already worked out.
+    return callee.getNameNode().getSymbol();
   }
 
-  // Methods inside classes, e.g. `square() {}`
-  for (const cls of file.getClasses()) {
-    for (const method of cls.getMethods()) {
-      console.log(`method    ${cls.getName()}.${method.getName()}  (${file.getBaseName()}:${method.getStartLineNumber()})`);
+  // Plain call: `fn(...)` — callee is just an identifier.
+  return callee.getSymbol();
+}
+
+for (const file of project.getSourceFiles()) {
+  for (const call of file.getDescendantsOfKind(SyntaxKind.CallExpression)) {
+    const caller = getEnclosingCallable(call);
+    if (!caller) continue;
+
+    const symbol = resolveCalleeSymbol(call);
+    if (!symbol) continue;
+
+    for (const decl of symbol.getDeclarations()) {
+      console.log(`${describe(caller)}  ->  ${describe(decl)}`);
     }
   }
 }
