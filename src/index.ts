@@ -24,15 +24,17 @@ function describe(node: Node): string {
 function resolveCalleeSymbol(call: CallExpression) {
   const callee = call.getExpression();
 
-  // Method call: `receiver.method(...)` — callee is a property access.
+  let symbol;
   if (Node.isPropertyAccessExpression(callee)) {
-    // We want the `.method` name. Which method it is depends on the
-    // receiver's type, which the checker has already worked out.
-    return callee.getNameNode().getSymbol();
+    symbol = callee.getNameNode().getSymbol();
+  } else {
+    symbol = callee.getSymbol();
   }
+  if (!symbol) return undefined;
 
-  // Plain call: `fn(...)` — callee is just an identifier.
-  return callee.getSymbol();
+  // If this name is an imported alias, follow it to the real declaration.
+  const aliased = symbol.getAliasedSymbol();
+  return aliased ?? symbol;
 }
 
 for (const file of project.getSourceFiles()) {
