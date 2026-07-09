@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Cartograph</title>
+  <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+  <script src="./data.js"></script>
+  <style>
+    html, body { margin: 0; height: 100%; background: #1e1e1e; color: #ddd; font-family: sans-serif; }
+    #graph { width: 100vw; height: 100vh; }
+    #title { position: absolute; top: 14px; left: 18px; font-size: 18px; font-weight: bold; z-index: 1; }
+    #hint { position: absolute; bottom: 14px; left: 18px; font-size: 13px; color: #888; z-index: 1; }
+  </style>
+</head>
+<body>
+  <div id="title">Cartograph — call graph</div>
+  <div id="hint">Click a node to highlight its callers &amp; callees · click empty space to reset</div>
+  <div id="graph"></div>
+<script>
+    const rawNodes = window.GRAPH.nodes;
+    const rawEdges = window.GRAPH.edges.map((e, i) => ({ ...e, id: i })); // give each edge an id
+    const nodes = new vis.DataSet(rawNodes);
+    const edges = new vis.DataSet(rawEdges);
+
+    const SELECTED = { background: "#ffcc44", border: "#ffdd77" };
+    const ACTIVE   = { background: "#4f8cff", border: "#89b4ff" };
+    const DIM      = { background: "#2a2a2a", border: "#3a3a3a" };
+
+    const network = new vis.Network(
+      document.getElementById("graph"),
+      { nodes, edges },
+      {
+        nodes: { shape: "dot", size: 16, color: ACTIVE, font: { color: "#ddd" }, chosen: false },
+        edges: { arrows: "to", color: { color: "#666" }, smooth: true, chosen: false },
+        physics: { barnesHut: { gravitationalConstant: -3000, springLength: 120 } },
+      }
+    );
+
+    function resetStyles() {
+      nodes.update(rawNodes.map((n) => ({ id: n.id, color: ACTIVE, font: { color: "#ddd" } })));
+      edges.update(rawEdges.map((e) => ({ id: e.id, color: { color: "#666" } })));
+    }
+
+    network.on("click", (params) => {
+      if (params.nodes.length === 0) {   // clicked empty space
+        resetStyles();
+        return;
+      }
+      const selected = params.nodes[0];
+      const neighbors = new Set(network.getConnectedNodes(selected)); // callers + callees
+      const litEdges = new Set(network.getConnectedEdges(selected));
+
+      nodes.update(rawNodes.map((n) => ({
+        id: n.id,
+        color: n.id === selected ? SELECTED : neighbors.has(n.id) ? ACTIVE : DIM,
+        font: { color: (n.id === selected || neighbors.has(n.id)) ? "#ddd" : "#555" },
+      })));
+
+      edges.update(rawEdges.map((e) => ({
+        id: e.id,
+        color: { color: litEdges.has(e.id) ? "#4f8cff" : "#2a2a2a" },
+      })));
+    });
+  </script>
+</body>
+</html>

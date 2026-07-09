@@ -77,4 +77,20 @@ export class CallGraph {
     return null;   // `from` cannot reach `to`
   }
 
+  // Every function/method in the graph.
+  nodes(): string[] {
+    const set = new Set<string>();
+    for (const k of this.callees.keys()) set.add(k);
+    for (const k of this.callers.keys()) set.add(k);
+    return [...set];
+  }
+
+  // Every edge, reconstructed from the forward map.
+  edges(): Edge[] {
+    const out: Edge[] = [];
+    for (const [from, tos] of this.callees) {
+      for (const to of tos) out.push({ from, to });
+    }
+    return out;
+  }
 }
