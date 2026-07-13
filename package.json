@@ -1,13 +1,22 @@
 {
   "name": "cartograph",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "A type-resolved call-graph analyzer for TypeScript — ask structural questions about a codebase instead of reading all of it.",
+  "main": "src/callgraph.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "cli": "tsx src/cli.ts",
+    "test": "tsx src/verify.ts",
+    "viz": "tsx src/cli.ts viz"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "static-analysis",
+    "call-graph",
+    "typescript",
+    "ast",
+    "ts-morph",
+    "code-navigation"
+  ],
+  "author": "Will Piwowarski",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {

@@ -32,9 +32,18 @@
       {
         nodes: { shape: "dot", size: 16, color: ACTIVE, font: { color: "#ddd" }, chosen: false },
         edges: { arrows: "to", color: { color: "#666" }, smooth: true, chosen: false },
-        physics: { barnesHut: { gravitationalConstant: -3000, springLength: 120 } },
+        physics: {
+          barnesHut: { gravitationalConstant: -3000, springLength: 120 },
+          stabilization: { iterations: 250 },
+        },
       }
     );
+
+    // Freeze the layout once it settles — stops endless jitter and keeps the
+    // graph steady for reading (and screenshots).
+    network.once("stabilizationIterationsDone", () => {
+      network.setOptions({ physics: false });
+    });
 
     function resetStyles() {
       nodes.update(rawNodes.map((n) => ({ id: n.id, color: ACTIVE, font: { color: "#ddd" } })));

@@ -33,6 +33,11 @@ const expectedEdges = [
   "sample/animals.ts:demo -> sample/animals.ts:Dog.speak",
   "sample/animals.ts:demo -> sample/animals.ts:Animal.speak",
   "sample/animals.ts:mystery -> sample/animals.ts:Animal.speak",
+  // Arrow / function-expression callables (handlers.ts):
+  "sample/handlers.ts:accumulate -> sample/math.ts:add",       // arrow → imported fn decl
+  "sample/handlers.ts:summarize -> sample/handlers.ts:accumulate", // arrow → arrow
+  "sample/handlers.ts:report -> sample/handlers.ts:summarize",     // arrow → arrow
+  "sample/handlers.ts:report -> sample/handlers.ts:format",        // arrow → function-expression
 ].sort();
 const actualEdges = edges.map((e) => `${e.from} -> ${e.to}`).sort();
 check("edges", actualEdges, expectedEdges);
@@ -43,7 +48,8 @@ check("whoCalls(double)", sorted(graph.whoCalls("sample/math.ts:double")),
 check("whatItCalls(run)", sorted(graph.whatItCalls("sample/math.ts:run")),
   sorted(["sample/math.ts:Calculator.square"]));
 
-// 3. Transitive closure.
+// 3. Transitive closure. `add` is now also reached through the arrow chain
+//    report -> summarize -> accumulate -> add.
 check("whatReaches(add)", sorted(graph.whatReaches("sample/math.ts:add")),
   sorted([
     "sample/math.ts:double",
@@ -52,9 +58,24 @@ check("whatReaches(add)", sorted(graph.whatReaches("sample/math.ts:add")),
     "sample/geometry.ts:perimeter",
     "sample/math.ts:Calculator.cube",
     "sample/math.ts:run",
+    "sample/handlers.ts:accumulate",
+    "sample/handlers.ts:summarize",
+    "sample/handlers.ts:report",
   ]));
 check("reachableFrom(run)", sorted(graph.reachableFrom("sample/math.ts:run")),
   sorted(["sample/math.ts:Calculator.square", "sample/math.ts:double", "sample/math.ts:add"]));
+
+// 3b. Arrow / function-expression callables resolve as both caller and callee.
+check("whoCalls(accumulate)", sorted(graph.whoCalls("sample/handlers.ts:accumulate")),
+  sorted(["sample/handlers.ts:summarize"]));
+check("whatItCalls(report)", sorted(graph.whatItCalls("sample/handlers.ts:report")),
+  sorted(["sample/handlers.ts:summarize", "sample/handlers.ts:format"]));
+// Anonymous callback stays transparent: the call to `add` inside accumulate's
+// `.forEach(x => …)` is attributed to accumulate, so this path exists.
+check("tracePath(report, add)",
+  graph.tracePath("sample/handlers.ts:report", "sample/math.ts:add"),
+  ["sample/handlers.ts:report", "sample/handlers.ts:summarize",
+   "sample/handlers.ts:accumulate", "sample/math.ts:add"]);
 
 // 4. Path tracing (order matters).
 check("tracePath(run, add)",

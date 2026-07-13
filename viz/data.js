@@ -1,94 +1,126 @@
 window.GRAPH = {
   "nodes": [
     {
-      "id": "Animal.report",
-      "label": "Animal.report"
+      "id": "sample/animals.ts:Animal.report",
+      "label": "sample/animals.ts:Animal.report"
     },
     {
-      "id": "demo",
-      "label": "demo"
+      "id": "sample/animals.ts:demo",
+      "label": "sample/animals.ts:demo"
     },
     {
-      "id": "mystery",
-      "label": "mystery"
+      "id": "sample/animals.ts:mystery",
+      "label": "sample/animals.ts:mystery"
     },
     {
-      "id": "perimeter",
-      "label": "perimeter"
+      "id": "sample/geometry.ts:perimeter",
+      "label": "sample/geometry.ts:perimeter"
     },
     {
-      "id": "total",
-      "label": "total"
+      "id": "sample/geometry.ts:total",
+      "label": "sample/geometry.ts:total"
     },
     {
-      "id": "double",
-      "label": "double"
+      "id": "sample/handlers.ts:accumulate",
+      "label": "sample/handlers.ts:accumulate"
     },
     {
-      "id": "Calculator.square",
-      "label": "Calculator.square"
+      "id": "sample/handlers.ts:summarize",
+      "label": "sample/handlers.ts:summarize"
     },
     {
-      "id": "Calculator.cube",
-      "label": "Calculator.cube"
+      "id": "sample/handlers.ts:report",
+      "label": "sample/handlers.ts:report"
     },
     {
-      "id": "run",
-      "label": "run"
+      "id": "sample/math.ts:double",
+      "label": "sample/math.ts:double"
     },
     {
-      "id": "Animal.speak",
-      "label": "Animal.speak"
+      "id": "sample/math.ts:Calculator.square",
+      "label": "sample/math.ts:Calculator.square"
     },
     {
-      "id": "Dog.speak",
-      "label": "Dog.speak"
+      "id": "sample/math.ts:Calculator.cube",
+      "label": "sample/math.ts:Calculator.cube"
     },
     {
-      "id": "add",
-      "label": "add"
+      "id": "sample/math.ts:run",
+      "label": "sample/math.ts:run"
+    },
+    {
+      "id": "sample/animals.ts:Animal.speak",
+      "label": "sample/animals.ts:Animal.speak"
+    },
+    {
+      "id": "sample/animals.ts:Dog.speak",
+      "label": "sample/animals.ts:Dog.speak"
+    },
+    {
+      "id": "sample/math.ts:add",
+      "label": "sample/math.ts:add"
+    },
+    {
+      "id": "sample/handlers.ts:format",
+      "label": "sample/handlers.ts:format"
     }
   ],
   "edges": [
     {
-      "from": "Animal.report",
-      "to": "Animal.speak"
+      "from": "sample/animals.ts:Animal.report",
+      "to": "sample/animals.ts:Animal.speak"
     },
     {
-      "from": "demo",
-      "to": "Dog.speak"
+      "from": "sample/animals.ts:demo",
+      "to": "sample/animals.ts:Dog.speak"
     },
     {
-      "from": "demo",
-      "to": "Animal.speak"
+      "from": "sample/animals.ts:demo",
+      "to": "sample/animals.ts:Animal.speak"
     },
     {
-      "from": "mystery",
-      "to": "Animal.speak"
+      "from": "sample/animals.ts:mystery",
+      "to": "sample/animals.ts:Animal.speak"
     },
     {
-      "from": "perimeter",
-      "to": "double"
+      "from": "sample/geometry.ts:perimeter",
+      "to": "sample/math.ts:double"
     },
     {
-      "from": "total",
-      "to": "add"
+      "from": "sample/geometry.ts:total",
+      "to": "sample/math.ts:add"
     },
     {
-      "from": "double",
-      "to": "add"
+      "from": "sample/handlers.ts:accumulate",
+      "to": "sample/math.ts:add"
     },
     {
-      "from": "Calculator.square",
-      "to": "double"
+      "from": "sample/handlers.ts:summarize",
+      "to": "sample/handlers.ts:accumulate"
     },
     {
-      "from": "Calculator.cube",
-      "to": "Calculator.square"
+      "from": "sample/handlers.ts:report",
+      "to": "sample/handlers.ts:format"
     },
     {
-      "from": "run",
-      "to": "Calculator.square"
+      "from": "sample/handlers.ts:report",
+      "to": "sample/handlers.ts:summarize"
+    },
+    {
+      "from": "sample/math.ts:double",
+      "to": "sample/math.ts:add"
+    },
+    {
+      "from": "sample/math.ts:Calculator.square",
+      "to": "sample/math.ts:double"
+    },
+    {
+      "from": "sample/math.ts:Calculator.cube",
+      "to": "sample/math.ts:Calculator.square"
+    },
+    {
+      "from": "sample/math.ts:run",
+      "to": "sample/math.ts:Calculator.square"
     }
   ]
 };
