@@ -2,7 +2,9 @@
 
 **A static-analysis tool that builds a type-resolved call graph of a TypeScript codebase — so you can ask structural questions about code instead of reading all of it.**
 
-![Cartograph call graph](docs/screenshot.png)
+![Cartograph's call graph of a real Next.js app](docs/screenshot.png)
+
+*Above: Cartograph's interactive call graph of a real Next.js application (~30 functions across `app/`, `components/`, and `lib/`). Click any node to highlight its callers and callees.*
 
 ## What it does
 

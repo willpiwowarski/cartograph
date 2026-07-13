@@ -1,126 +1,230 @@
 window.GRAPH = {
   "nodes": [
     {
-      "id": "sample/animals.ts:Animal.report",
-      "label": "sample/animals.ts:Animal.report"
+      "id": "app/page.tsx:loadDatasets",
+      "label": "app/page.tsx:loadDatasets"
     },
     {
-      "id": "sample/animals.ts:demo",
-      "label": "sample/animals.ts:demo"
+      "id": "app/page.tsx:Home",
+      "label": "app/page.tsx:Home"
     },
     {
-      "id": "sample/animals.ts:mystery",
-      "label": "sample/animals.ts:mystery"
+      "id": "app/page.tsx:handleFileUpload",
+      "label": "app/page.tsx:handleFileUpload"
     },
     {
-      "id": "sample/geometry.ts:perimeter",
-      "label": "sample/geometry.ts:perimeter"
+      "id": "components/AskAIPanel.tsx:load",
+      "label": "components/AskAIPanel.tsx:load"
     },
     {
-      "id": "sample/geometry.ts:total",
-      "label": "sample/geometry.ts:total"
+      "id": "components/AskAIPanel.tsx:AskAIPanel",
+      "label": "components/AskAIPanel.tsx:AskAIPanel"
     },
     {
-      "id": "sample/handlers.ts:accumulate",
-      "label": "sample/handlers.ts:accumulate"
+      "id": "components/AskAIPanel.tsx:handleSubmit",
+      "label": "components/AskAIPanel.tsx:handleSubmit"
     },
     {
-      "id": "sample/handlers.ts:summarize",
-      "label": "sample/handlers.ts:summarize"
+      "id": "components/ChartSection.tsx:ChartSection",
+      "label": "components/ChartSection.tsx:ChartSection"
     },
     {
-      "id": "sample/handlers.ts:report",
-      "label": "sample/handlers.ts:report"
+      "id": "components/DatasetWorkspace.tsx:DatasetWorkspace",
+      "label": "components/DatasetWorkspace.tsx:DatasetWorkspace"
     },
     {
-      "id": "sample/math.ts:double",
-      "label": "sample/math.ts:double"
+      "id": "components/DatasetWorkspace.tsx:handleNaturalLanguageCommand",
+      "label": "components/DatasetWorkspace.tsx:handleNaturalLanguageCommand"
     },
     {
-      "id": "sample/math.ts:Calculator.square",
-      "label": "sample/math.ts:Calculator.square"
+      "id": "app/datasets/page.tsx:loadDatasets",
+      "label": "app/datasets/page.tsx:loadDatasets"
     },
     {
-      "id": "sample/math.ts:Calculator.cube",
-      "label": "sample/math.ts:Calculator.cube"
+      "id": "app/datasets/page.tsx:DatasetsPage",
+      "label": "app/datasets/page.tsx:DatasetsPage"
     },
     {
-      "id": "sample/math.ts:run",
-      "label": "sample/math.ts:run"
+      "id": "app/datasets/[id]/page.tsx:loadDataset",
+      "label": "app/datasets/[id]/page.tsx:loadDataset"
     },
     {
-      "id": "sample/animals.ts:Animal.speak",
-      "label": "sample/animals.ts:Animal.speak"
+      "id": "app/datasets/[id]/page.tsx:DatasetDetailPage",
+      "label": "app/datasets/[id]/page.tsx:DatasetDetailPage"
     },
     {
-      "id": "sample/animals.ts:Dog.speak",
-      "label": "sample/animals.ts:Dog.speak"
+      "id": "app/api/ai/ask/route.ts:POST",
+      "label": "app/api/ai/ask/route.ts:POST"
     },
     {
-      "id": "sample/math.ts:add",
-      "label": "sample/math.ts:add"
+      "id": "app/api/ai/chart/route.ts:validateChartConfig",
+      "label": "app/api/ai/chart/route.ts:validateChartConfig"
     },
     {
-      "id": "sample/handlers.ts:format",
-      "label": "sample/handlers.ts:format"
+      "id": "app/api/ai/chart/route.ts:tryParseAndValidate",
+      "label": "app/api/ai/chart/route.ts:tryParseAndValidate"
+    },
+    {
+      "id": "app/api/ai/chart/route.ts:buildRetryPrompt",
+      "label": "app/api/ai/chart/route.ts:buildRetryPrompt"
+    },
+    {
+      "id": "app/api/ai/chart/route.ts:POST",
+      "label": "app/api/ai/chart/route.ts:POST"
+    },
+    {
+      "id": "lib/api.ts:getDatasets",
+      "label": "lib/api.ts:getDatasets"
+    },
+    {
+      "id": "lib/detectColumns.ts:detectColumns",
+      "label": "lib/detectColumns.ts:detectColumns"
+    },
+    {
+      "id": "lib/api.ts:uploadDataset",
+      "label": "lib/api.ts:uploadDataset"
+    },
+    {
+      "id": "lib/api.ts:loadConversation",
+      "label": "lib/api.ts:loadConversation"
+    },
+    {
+      "id": "lib/api.ts:askAI",
+      "label": "lib/api.ts:askAI"
+    },
+    {
+      "id": "components/ChartSection.tsx:aggregateValues",
+      "label": "components/ChartSection.tsx:aggregateValues"
+    },
+    {
+      "id": "lib/generateInsights.ts:generateInsights",
+      "label": "lib/generateInsights.ts:generateInsights"
+    },
+    {
+      "id": "lib/api.ts:generateChartWithAI",
+      "label": "lib/api.ts:generateChartWithAI"
+    },
+    {
+      "id": "lib/api.ts:getDataset",
+      "label": "lib/api.ts:getDataset"
+    },
+    {
+      "id": "app/api/ai/ask/route.ts:formatHistory",
+      "label": "app/api/ai/ask/route.ts:formatHistory"
+    },
+    {
+      "id": "app/api/ai/chart/route.ts:isRecord",
+      "label": "app/api/ai/chart/route.ts:isRecord"
+    },
+    {
+      "id": "app/api/ai/chart/route.ts:stripFences",
+      "label": "app/api/ai/chart/route.ts:stripFences"
+    },
+    {
+      "id": "app/api/ai/chart/route.ts:buildBasePrompt",
+      "label": "app/api/ai/chart/route.ts:buildBasePrompt"
     }
   ],
   "edges": [
     {
-      "from": "sample/animals.ts:Animal.report",
-      "to": "sample/animals.ts:Animal.speak"
+      "from": "app/page.tsx:loadDatasets",
+      "to": "lib/api.ts:getDatasets"
     },
     {
-      "from": "sample/animals.ts:demo",
-      "to": "sample/animals.ts:Dog.speak"
+      "from": "app/page.tsx:Home",
+      "to": "app/page.tsx:loadDatasets"
     },
     {
-      "from": "sample/animals.ts:demo",
-      "to": "sample/animals.ts:Animal.speak"
+      "from": "app/page.tsx:handleFileUpload",
+      "to": "lib/detectColumns.ts:detectColumns"
     },
     {
-      "from": "sample/animals.ts:mystery",
-      "to": "sample/animals.ts:Animal.speak"
+      "from": "app/page.tsx:handleFileUpload",
+      "to": "lib/api.ts:uploadDataset"
     },
     {
-      "from": "sample/geometry.ts:perimeter",
-      "to": "sample/math.ts:double"
+      "from": "components/AskAIPanel.tsx:load",
+      "to": "lib/api.ts:loadConversation"
     },
     {
-      "from": "sample/geometry.ts:total",
-      "to": "sample/math.ts:add"
+      "from": "components/AskAIPanel.tsx:AskAIPanel",
+      "to": "components/AskAIPanel.tsx:load"
     },
     {
-      "from": "sample/handlers.ts:accumulate",
-      "to": "sample/math.ts:add"
+      "from": "components/AskAIPanel.tsx:handleSubmit",
+      "to": "lib/api.ts:askAI"
     },
     {
-      "from": "sample/handlers.ts:summarize",
-      "to": "sample/handlers.ts:accumulate"
+      "from": "components/ChartSection.tsx:ChartSection",
+      "to": "components/ChartSection.tsx:aggregateValues"
     },
     {
-      "from": "sample/handlers.ts:report",
-      "to": "sample/handlers.ts:format"
+      "from": "components/DatasetWorkspace.tsx:DatasetWorkspace",
+      "to": "lib/generateInsights.ts:generateInsights"
     },
     {
-      "from": "sample/handlers.ts:report",
-      "to": "sample/handlers.ts:summarize"
+      "from": "components/DatasetWorkspace.tsx:handleNaturalLanguageCommand",
+      "to": "lib/api.ts:generateChartWithAI"
     },
     {
-      "from": "sample/math.ts:double",
-      "to": "sample/math.ts:add"
+      "from": "app/datasets/page.tsx:loadDatasets",
+      "to": "lib/api.ts:getDatasets"
     },
     {
-      "from": "sample/math.ts:Calculator.square",
-      "to": "sample/math.ts:double"
+      "from": "app/datasets/page.tsx:DatasetsPage",
+      "to": "app/datasets/page.tsx:loadDatasets"
     },
     {
-      "from": "sample/math.ts:Calculator.cube",
-      "to": "sample/math.ts:Calculator.square"
+      "from": "app/datasets/[id]/page.tsx:loadDataset",
+      "to": "lib/api.ts:getDataset"
     },
     {
-      "from": "sample/math.ts:run",
-      "to": "sample/math.ts:Calculator.square"
+      "from": "app/datasets/[id]/page.tsx:loadDataset",
+      "to": "lib/detectColumns.ts:detectColumns"
+    },
+    {
+      "from": "app/datasets/[id]/page.tsx:DatasetDetailPage",
+      "to": "app/datasets/[id]/page.tsx:loadDataset"
+    },
+    {
+      "from": "app/api/ai/ask/route.ts:POST",
+      "to": "app/api/ai/ask/route.ts:formatHistory"
+    },
+    {
+      "from": "app/api/ai/chart/route.ts:validateChartConfig",
+      "to": "app/api/ai/chart/route.ts:isRecord"
+    },
+    {
+      "from": "app/api/ai/chart/route.ts:tryParseAndValidate",
+      "to": "app/api/ai/chart/route.ts:stripFences"
+    },
+    {
+      "from": "app/api/ai/chart/route.ts:tryParseAndValidate",
+      "to": "app/api/ai/chart/route.ts:isRecord"
+    },
+    {
+      "from": "app/api/ai/chart/route.ts:tryParseAndValidate",
+      "to": "app/api/ai/chart/route.ts:validateChartConfig"
+    },
+    {
+      "from": "app/api/ai/chart/route.ts:buildRetryPrompt",
+      "to": "app/api/ai/chart/route.ts:buildBasePrompt"
+    },
+    {
+      "from": "app/api/ai/chart/route.ts:POST",
+      "to": "app/api/ai/chart/route.ts:buildBasePrompt"
+    },
+    {
+      "from": "app/api/ai/chart/route.ts:POST",
+      "to": "app/api/ai/chart/route.ts:tryParseAndValidate"
+    },
+    {
+      "from": "app/api/ai/chart/route.ts:POST",
+      "to": "app/api/ai/chart/route.ts:buildRetryPrompt"
+    },
+    {
+      "from": "app/api/ai/chart/route.ts:POST",
+      "to": "app/api/ai/chart/route.ts:isRecord"
     }
   ]
 };
