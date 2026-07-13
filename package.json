@@ -17,7 +17,7 @@
     "code-navigation"
   ],
   "author": "Will Piwowarski",
-  "license": "ISC",
+  "license": "MIT",
   "type": "commonjs",
   "dependencies": {
     "ts-morph": "^28.0.0"

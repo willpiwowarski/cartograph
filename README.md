@@ -1,5 +1,7 @@
 # Cartograph
 
+[![CI](https://github.com/willpiwowarski/cartograph/actions/workflows/ci.yml/badge.svg)](https://github.com/willpiwowarski/cartograph/actions/workflows/ci.yml)
+
 **A static-analysis tool that builds a type-resolved call graph of a TypeScript codebase — so you can ask structural questions about code instead of reading all of it.**
 
 ![Cartograph's call graph of a real Next.js app](docs/screenshot.png)
